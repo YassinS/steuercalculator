@@ -1,18 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Steuercalculator</title>
+</head>
+<body>
 
-{% block content %}
-    <h1>{% block title %} Add a New Message {% endblock %}</h1>
-    <form method="post">
-        <label for="gehalt">Gehalt in Euro pro Monat</label>
-        <br>
-        <input type="text" name="gehalt"
-               placeholder="Gehalt"
-               ></input>
-        <br>
+<form action="">
+    <label for="IB_Brutto">Brutto Gehalt: </label>
+    <input type="text" name="IB_Brutto" placeholder="Brutto Gehalt"><br />
+    <label for="IB_Steuerklasse">Steuerklasse:</label>
+    <input type="text" name="IB_Steuerklasse" placeholder="Steuerklasse"><br />
+    <label for="Kirche">Kirche?</label>
+    <input type="checkbox" name="Kirche" value="Ja">
+    <br>
+    <br>
+    <button type="submit">Absenden</button>
+</form>
 
-        <label for="steuersatz">Steuersatz in Prozent</label>
-        <br>
-        <input name="steuersatz" placeholder="Steuersatz"></input>
-        <br>
-        <button type="submit">Submit</button>
-    </form>
-{% endblock %}
+<p>Ihre Netto Gehalt beträgt:</p> 
+
+
+</body>
+</html>
