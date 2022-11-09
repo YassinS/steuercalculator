@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Steuercalculator</title>
-</head>
-<body>
+  </head>
+  <body>
+    <form action="" method="post">
+      <label for="IB_Brutto">Brutto Gehalt: </label>
+      <input
+        type="text"
+        name="IB_Brutto"
+        placeholder="Brutto Gehalt"
+      /><br />
+      <label for="IB_Steuerklasse">Steuerklasse:</label>
+      <input
+        type="text"
+        name="IB_Steuerklasse"
+        placeholder="Steuerklasse"
+      /><br />
+      <label for="Kirche">Kirche?</label>
+      <input type="checkbox" name="Kirche" value="Ja" />
+      <br />
+      <br />
+      <button type="submit">Absenden</button>
+    </form>
 
-<form action="">
-    <label for="IB_Brutto">Brutto Gehalt: </label>
-    <input type="text" name="IB_Brutto" placeholder="Brutto Gehalt"><br />
-    <label for="IB_Steuerklasse">Steuerklasse:</label>
-    <input type="text" name="IB_Steuerklasse" placeholder="Steuerklasse"><br />
-    <label for="Kirche">Kirche?</label>
-    <input type="checkbox" name="Kirche" value="Ja">
-    <br>
-    <br>
-    <button type="submit">Absenden</button>
-</form>
-
-<p>Ihre Netto Gehalt beträgt:</p> 
-
-
-</body>
+    <p>Ihre Netto Gehalt beträgt:</p>
+  </body>
 </html>
