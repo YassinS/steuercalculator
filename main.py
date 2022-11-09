@@ -25,7 +25,6 @@ def index():
                 kirchensteuer = round(float(gehalt) * 0.09,2)
                 values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":kirche,"kirchensteuer":kirchensteuer}
             else:
-                
                 values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":"Nein"}
             return render_template("result.html",tax=calculated_value_tax,values=values)
     if request.method=="GET":
