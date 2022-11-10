@@ -1,44 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Steuercalculator</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-
+    <link rel="stylesheet" href="../static/style.css" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+  </head>
+  <body>
     <section id="Rechner">
-        <form action="#">
-            <div class="container chead">
-                <h1>Steuerrechner V1.0</h1>
-                <!-- <p>Steuerrechner by Team OZ</p>
+      <form action="#">
+        <div class="container chead">
+          <h1>Steuerrechner V1.0</h1>
+          <!-- <p>Steuerrechner by Team OZ</p>
                 <p>Tragen sie im ersten Feld ihr Brutto Gehalt ein</p>
                 <p>Tragen sie danach ihre Steuerklasse in das zweite Feld ein (1-5)</p>
                 <p>Anschließend wählen sie aus ob sie die Kirchensteuer mit einberechnen wollen</p> -->
-            </div>
-            <div class="container cform">
-                <label for="IB_Brutto">Brutto Gehalt: </label>
-                <input type="text" name="IB_Brutto" placeholder="Brutto Gehalt eingeben (bsp. 3200)" required>
+        </div>
+        <div class="container cform">
+          <label for="IB_Brutto">Brutto Gehalt: </label>
+          <input
+            type="text"
+            name="IB_Brutto"
+            placeholder="Brutto Gehalt eingeben (bsp. 3200)"
+            required
+          />
 
-                <label for="IB_Steuerklasse">Steuerklasse:</label>
-                <input type="text" name="IB_Steuerklasse" placeholder="Steuerklasse eingeben (bsp. 1)" required>
+          <label for="IB_Steuerklasse">Steuerklasse:</label>
+          <input
+            type="text"
+            name="IB_Steuerklasse"
+            placeholder="Steuerklasse eingeben (bsp. 1)"
+            required
+          />
 
-                <input type="checkbox" name="CB_Kirche" id="CB_Kirche" value="Ja">
-                <label for="CB_Kirche">Kirchensteuer?</label><br />
+          <input
+            type="checkbox"
+            name="CB_Kirche"
+            id="CB_Kirche"
+            value="Ja"
+          />
+          <label for="CB_Kirche">Kirchensteuer?</label><br />
 
-                <button type="submit" name="BTN_Ermitteln"><span>Ermitteln</span></button>
-            </div>
-        </form>
+          <button type="submit" name="BTN_Ermitteln">
+            <span>Ermitteln</span>
+          </button>
+        </div>
+      </form>
     </section>
 
     <br />
 
     <section id="Result">
-        <div class="container cresult">
-            <h2>Ihr Netto Gehalt beträgt:</h2>
-            <p class="Netto"></p>
-        </div>
+      <div class="container cresult">
+        <h2>Ihr Netto Gehalt beträgt:</h2>
+        <p class="Netto"></p>
+      </div>
     </section>
-
-</body>
+  </body>
 </html>
