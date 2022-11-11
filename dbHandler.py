@@ -1,15 +1,19 @@
 import csv
 import sqlite3
 
-con = sqlite3.connect("data.db")
-cur = con.cursor()
+try:
+    con = sqlite3.connect("Lohnesteuertabelle.sql")         #+ Versucht hier in diesen Try&Catch Block eine
+    print("Connection Successful")                          #+ Verbindung zur Datenbank herzustellen
+except sqlite3.Error as error:
+    print("Connection failed")
 
-with open('Lohnsteuertabelle.csv', 'r') as importedTable:
-    dr = csv.DictReader(importedTable)
+    cur = con.cursor()                                      #+ Ein Cursor Element, welches die Datenbank
+                                                            #+ Befehle weiter an die Datenbank leitet
 
-    for i in dr:
-        #+print(i[None][0])
-        cur.executemany(f"INSERT INTO t ({i[None][0][0]}, {i[None][0][1]}, {i[None][0][2]}, {i[None][0][3]}, {i[None][0][4]}, {i[None][0][5]}, {i[None][0][6]}) VALUES('inEuro', 'sk1', 'sk2', 'sk3', 'sk4', 'sk5', 'sk6' );", importedTable)
-        cur.execute("SELECT * from t")
-    con.commit()
-    con.close()
+    readDB = cur.fetchall()                                 #+ Liest einfach alles aus der Datenbank aus
+
+    for i in readDB:                                        
+        print(i[None])
+
+    cur.close()                                             #+ Cursor Element wird beendet
+    con.close()                                             #+ Verbindung zur Datenbank wird beendet
