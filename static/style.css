@@ -24,7 +24,9 @@ p{
 hr {
     border: 1px solid #43ADBB;
 }
-
+#error{
+    color: red;
+}
 .Netto{
     font-size: 23px;
     color: #57fa2e;

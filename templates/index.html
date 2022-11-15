@@ -53,10 +53,22 @@
     </section>
 
     <br />
-    {% if tax != 0 %}
+    {{error}}
+
+    {% if error == 0 %}
+      {% if tax != 0 %}
     <section id="Result">
       <div class="container cresult">
         <h2>Ihr Netto Gehalt beträgt: {{tax}}€</h2>
+        <p class="Netto"></p>
+      </div>
+    </section>
+      {% endif %}
+    
+    {% elif error == 1 %}
+    <section id="Result">
+      <div class="container cresult">
+        <h2 id="error">Geben Sie eine Korrekte Lohnsteuerklasse ein</h2>
         <p class="Netto"></p>
       </div>
     </section>

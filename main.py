@@ -19,8 +19,8 @@ def check_csv(gehalt,steuerklasse):
 
 @app.route('/',methods=('GET','POST'))
 def index():
+    wrong_values = 0
     if request.method == 'POST':
-        wrong_values = 0
         lohnsteuer = 0
         gehalt = request.form['IB_Brutto']
         steuerklasse = request.form['IB_Steuerklasse']
@@ -38,10 +38,10 @@ def index():
             values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":kirche,"kirchensteuer":kirchensteuer}
         else:
             values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":"Nein"}
-        print(lohnsteuer)
-        return render_template("index.html",tax=lohnsteuer,values=values,gehalt_input=gehalt,steuerklasse_input=steuerklasse)
+        print(wrong_values)
+        return render_template("index.html",error=wrong_values,tax=lohnsteuer,values=values,gehalt_input=gehalt,steuerklasse_input=steuerklasse)
     if request.method=="GET":
-        return render_template("index.html",wrong_values=wrong_values,tax=0,gehalt_input="",steuerklasse_input="")
+        return render_template("index.html",error=wrong_values,tax=0,gehalt_input="",steuerklasse_input="")
 
 
 if __name__ == "__main__":
