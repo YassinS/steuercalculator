@@ -7,7 +7,6 @@ import sys
 
 
 app = Flask(__name__,template_folder="templates")
-app.config['SECRET_KEY'] = 'C2HWGVoMGfNTBsrYQg8EcMrdTimkZfAb'
 
 def check_db(gehalt,steuerklasse):
     cur = interface.db()
@@ -16,8 +15,8 @@ def check_db(gehalt,steuerklasse):
 def check_csv(gehalt,steuerklasse):
     with open("Lohnsteuertabelle.csv") as csvfile:
         print(steuerklasse, file=sys.stderr)
-        reader = csv.reader(csvfile,delimiter=";")
-        for row in reader:
+        rows = csv.reader(csvfile,delimiter=";")
+        for row in rows:
             if gehalt in row:
                 return row
             else:
