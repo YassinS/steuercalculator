@@ -45,9 +45,12 @@ def index():
                 values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":kirche,"kirchensteuer":kirchensteuer}
             else:
                 values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":"Nein"}
-            return render_template("result.html",tax=lohnsteuer,values=values,res=lohnsteuer)
+            return render_template("index.html",tax=lohnsteuer,values=values,res=lohnsteuer)
     if request.method=="GET":
+        tax = 0
         return render_template("index.html")
+
+        
 
 
 @app.route('/result')
