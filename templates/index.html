@@ -21,7 +21,7 @@
         <div class="container cform">
           <label for="IB_Brutto">Brutto Gehalt: </label>
           <input
-            type="text"
+            type="number"
             name="IB_Brutto"
             placeholder="Brutto Gehalt eingeben (bsp. 3200)"
             value="{{gehalt_input}}"
@@ -30,7 +30,7 @@
 
           <label for="IB_Steuerklasse">Steuerklasse:</label>
           <input
-            type="text"
+            type="number"
             name="IB_Steuerklasse"
             placeholder="Steuerklasse eingeben (bsp. 1)"
             value="{{steuerklasse_input}}"
@@ -53,12 +53,13 @@
     </section>
 
     <br />
-
+    {% if tax != 0 %}
     <section id="Result">
       <div class="container cresult">
-        <h2>Ihr Netto Gehalt beträgt: {{tax}}</h2>
+        <h2>Ihr Netto Gehalt beträgt: {{tax}}€</h2>
         <p class="Netto"></p>
       </div>
     </section>
+    {% endif %}
   </body>
 </html>

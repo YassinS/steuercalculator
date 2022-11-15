@@ -14,7 +14,6 @@ def check_db(gehalt,steuerklasse):
     return res
 def check_csv(gehalt,steuerklasse):
     with open("Lohnsteuertabelle.csv") as csvfile:
-        print(steuerklasse, file=sys.stderr)
         rows = csv.reader(csvfile,delimiter=";")
         for row in rows:
             if gehalt in row:
@@ -40,14 +39,10 @@ def index():
         else:
             values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":"Nein"}
         print(lohnsteuer)
-        return render_template("index.html",tax=lohnsteuer,values=values,gehalt_input=gehalt,steuerklasse_input=steuerklasse)
+        return render_template("index.html",tax=lohnsteuer,gehalt_input=gehalt,steuerklasse_input=steuerklasse)
     if request.method=="GET":
-        return render_template("index.html")
+        return render_template("index.html",tax=0,gehalt_input="",steuerklasse_input="")
 
-
-@app.route('/result')
-def result():
-    return render_template("result.html")
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=1800,debug=True)
