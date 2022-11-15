@@ -39,7 +39,7 @@ def index():
         print(lohnsteuer)
         return render_template("index.html",tax=lohnsteuer,values=values,gehalt_input=gehalt,steuerklasse_input=steuerklasse)
     if request.method=="GET":
-        return render_template("index.html",tax=0,gehalt_input="",steuerklasse_input="")
+        return render_template("index.html",wrong_values=wrong_values,tax=0,gehalt_input="",steuerklasse_input="")
 
 
 if __name__ == "__main__":
