@@ -1,4 +1,3 @@
-import interface
 from flask import Flask
 from flask import render_template, request, url_for, flash, redirect
 import csv
@@ -8,10 +7,6 @@ import sys
 
 app = Flask(__name__,template_folder="templates")
 
-def check_db(gehalt,steuerklasse):
-    cur = interface.db()
-    res = cur.execute(f"SELECT {int(steuerklasse)} FROM lohnsteuer WHERE 'in Euro'>{gehalt}")
-    return res
 def check_csv(gehalt,steuerklasse):
     with open("Lohnsteuertabelle.csv") as csvfile:
         rows = csv.reader(csvfile,delimiter=";")
@@ -19,9 +14,8 @@ def check_csv(gehalt,steuerklasse):
             if gehalt in row:
                 return row
             else:
-                for i in row:
-                    if int(i)>int(gehalt):
-                        return row
+                if int(row[0])>=int(gehalt):
+                    return row
 
 @app.route('/',methods=('GET','POST'))
 def index():
@@ -32,7 +26,10 @@ def index():
             kirche = request.form.get('Kirche') 
         except Exception:
             kirche = False
-        lohnsteuer=check_csv(gehalt,steuerklasse)[int(steuerklasse)]
+        if int(steuerklasse) > 0 and int(steuerklasse) <7:
+            lohnsteuer=check_csv(gehalt,steuerklasse)[int(steuerklasse)]
+        else:
+            lohnsteuer = "Geben Sie richtige Werte ein"
         if kirche:
             kirchensteuer = round(float(gehalt) * 0.09,2)
             values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":kirche,"kirchensteuer":kirchensteuer}
