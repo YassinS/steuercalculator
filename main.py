@@ -20,9 +20,8 @@ def check_csv(gehalt,steuerklasse):
             if gehalt in row:
                 return row
             else:
-                for i in row:
-                    if int(i)>int(gehalt):
-                        return row
+                if int(row[0])>int(gehalt):
+                    return row
 
 @app.route('/',methods=('GET','POST'))
 def index():
@@ -46,7 +45,6 @@ def index():
                 values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":"Nein"}
             return render_template("index.html",tax=lohnsteuer,values=values,res=lohnsteuer)
     if request.method=="GET":
-        tax = 0
         return render_template("index.html")
 
         
