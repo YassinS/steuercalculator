@@ -20,6 +20,8 @@ def check_csv(gehalt,steuerklasse):
 @app.route('/',methods=('GET','POST'))
 def index():
     if request.method == 'POST':
+        wrong_values = 0
+        lohnsteuer = 0
         gehalt = request.form['IB_Brutto']
         steuerklasse = request.form['IB_Steuerklasse']
         try:
