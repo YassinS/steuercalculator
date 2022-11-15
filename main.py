@@ -30,14 +30,15 @@ def index():
         if int(steuerklasse) > 0 and int(steuerklasse) <7:
             lohnsteuer=check_csv(gehalt,steuerklasse)[int(steuerklasse)]
         else:
-            lohnsteuer = "Geben Sie richtige Werte ein"
+            wrong_values=1
+        
         if kirche:
             kirchensteuer = round(float(gehalt) * 0.09,2)
             values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":kirche,"kirchensteuer":kirchensteuer}
         else:
             values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":"Nein"}
         print(lohnsteuer)
-        return render_template("index.html",tax=lohnsteuer,values=values,gehalt_input=gehalt,steuerklasse_input=steuerklasse)
+        return render_template("index.html",wrong_values=wrong_values,tax=lohnsteuer,values=values,gehalt_input=gehalt,steuerklasse_input=steuerklasse)
     if request.method=="GET":
         return render_template("index.html")
 
