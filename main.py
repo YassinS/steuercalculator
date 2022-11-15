@@ -33,28 +33,22 @@ def index():
             kirche = request.form.get('Kirche') 
         except Exception:
             kirche = False
-        if not gehalt:
-            flash('Gehalt wird benötigt')
-        elif not steuerklasse:
-            flash('Steuerklasse wird benötigt')
+        lohnsteuer=check_csv(gehalt,steuerklasse)[int(steuerklasse)]
+        if kirche:
+            kirchensteuer = round(float(gehalt) * 0.09,2)
+            values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":kirche,"kirchensteuer":kirchensteuer}
         else:
-            lohnsteuer=check_csv(gehalt,steuerklasse)[int(steuerklasse)]
-            if kirche:
-                kirchensteuer = round(float(gehalt) * 0.09,2)
-                values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":kirche,"kirchensteuer":kirchensteuer}
-            else:
-                values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":"Nein"}
-            return render_template("index.html",tax=lohnsteuer,values=values,res=lohnsteuer)
+            values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":"Nein"}
+        print(lohnsteuer)
+        return render_template("index.html",tax=lohnsteuer,values=values,gehalt_input=gehalt,steuerklasse_input=steuerklasse)
     if request.method=="GET":
-        tax = 0
         return render_template("index.html")
-
-        
 
 
 @app.route('/result')
 def result():
     return render_template("result.html")
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=1800,debug=True)
 
