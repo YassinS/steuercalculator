@@ -101,6 +101,15 @@ input[type=number]:focus, input[type=number]:hover{
 
 input[type=checkbox] {
     margin-top: 16px;
+    cursor: pointer;
+}
+
+#CB_Kirche_lable{
+    cursor: pointer;
+}
+#CB_Kirche_lable:hover{
+    cursor: pointer;
+    color: lightgray;
 }
 
 form input[type=number], button{

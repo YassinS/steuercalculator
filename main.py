@@ -25,7 +25,6 @@ def index():
     wrong_values = 0
     lohnsteuer = 0
     if request.method == 'POST':
-        
         gehalt = request.form['IB_Brutto']
         steuerklasse = request.form['IB_Steuerklasse']
         kirche = request.form.get('CB_Kirche') 
