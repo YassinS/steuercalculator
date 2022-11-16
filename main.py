@@ -28,11 +28,12 @@ def index():
         
         gehalt = request.form['IB_Brutto']
         steuerklasse = request.form['IB_Steuerklasse']
+        kirche = request.form.get('CB_Kirche') 
 
-        try:
-            kirche = request.form.get('Kirche') 
-        except Exception:
-            kirche = False
+        if kirche == None:
+            kirche = 0
+
+        print(kirche)
         
         if int(steuerklasse) > 0 and int(steuerklasse) <7:
             check = check_csv(gehalt)
@@ -46,7 +47,7 @@ def index():
         else:
             values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":"Nein"}
         print(lohnsteuer)
-        return render_template("index.html",error=wrong_values,tax=int(gehalt)-int(lohnsteuer),values=values,gehalt_input=gehalt,steuerklasse_input=steuerklasse)
+        return render_template("index.html",error=wrong_values,tax=int(gehalt)-int(lohnsteuer),values=values,gehalt_input=gehalt,steuerklasse_input=steuerklasse,kirche=kirche)
     if request.method=="GET":
         return render_template("index.html",error=wrong_values,tax=0,gehalt_input="",steuerklasse_input="")
 

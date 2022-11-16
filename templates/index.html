@@ -36,13 +36,24 @@
             value="{{steuerklasse_input}}"
             required
           />
-
+          {% if kirche == 0 %}
           <input
             type="checkbox"
             name="CB_Kirche"
             id="CB_Kirche"
-            value="Ja"
+            value="1"
+            
           />
+          {% else %}
+          <input
+            type="checkbox"
+            name="CB_Kirche"
+            id="CB_Kirche"
+            value="1"
+            checked
+            
+          />
+          {% endif%}
           <label for="CB_Kirche">Kirchensteuer?</label><br />
 
           <button type="submit" name="BTN_Ermitteln">
