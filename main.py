@@ -3,8 +3,6 @@ from flask import render_template, request, url_for, flash, redirect
 import csv
 import sys
 
-
-
 app = Flask(__name__,template_folder="templates")
 
 def check_csv(gehalt):
@@ -24,34 +22,41 @@ def check_csv(gehalt):
 def index():
     wrong_values = 0
     lohnsteuer = 0
+
     if request.method == 'POST':
+        #get request form
         gehalt = request.form['IB_Brutto']
         steuerklasse = request.form['IB_Steuerklasse']
         kirche = request.form.get('CB_Kirche') 
 
-        if kirche == None:
-            kirchesteu = 0
-        else:
-            kirchesteu = kirche
-
-        print(kirchesteu)
-        
+        #check tax class
         if int(steuerklasse) > 0 and int(steuerklasse) <7:
             check = check_csv(gehalt)
             lohnsteuer=check[int(steuerklasse)]
         else:
             wrong_values=1
         
+        #check church tax
         if kirche:
+            #calculate church tax 
             kirchensteuer = round(float(gehalt) * 0.09,2)
-            values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":kirche,"kirchensteuer":kirchensteuer}
+
+            #church checkbox true
+            kirche_tf = 1
+
         else:
+            #no church tax
             kirchensteuer = 0
-            values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":"Nein"}
-        print(kirchensteuer)
-        return render_template("index.html",error=wrong_values,tax=int(int(gehalt)-int(lohnsteuer)-kirchensteuer),values=values,gehalt_input=gehalt,steuerklasse_input=steuerklasse,kirche=kirchesteu)
+
+            #church checkbox false
+            kirche_tf = 0
+
+        #return index.html with values    
+        return render_template("index.html",error=wrong_values,tax=int(int(gehalt)-int(lohnsteuer)-kirchensteuer),gehalt_input=gehalt,steuerklasse_input=steuerklasse,kirche=kirche_tf)
     if request.method=="GET":
-        return render_template("index.html",error=wrong_values,tax=0,gehalt_input="",steuerklasse_input="")
+        #return index.html with default values 
+        return render_template("index.html",error=wrong_values,tax=0,gehalt_input="",steuerklasse_input=1,kirche=0) 
+    
 
 
 if __name__ == "__main__":
