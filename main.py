@@ -50,7 +50,7 @@ def index():
             kirchensteuer = 0
             values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":"Nein"}
         print(kirchensteuer)
-        return render_template("index.html",error=wrong_values,tax=int(gehalt)-int(lohnsteuer)-kirchensteuer,values=values,gehalt_input=gehalt,steuerklasse_input=steuerklasse,kirche=kirchesteu)
+        return render_template("index.html",error=wrong_values,tax=int(int(gehalt)-int(lohnsteuer)-kirchensteuer),values=values,gehalt_input=gehalt,steuerklasse_input=steuerklasse,kirche=kirchesteu)
     if request.method=="GET":
         return render_template("index.html",error=wrong_values,tax=0,gehalt_input="",steuerklasse_input="")
 

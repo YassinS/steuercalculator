@@ -29,13 +29,24 @@
           />
 
           <label for="IB_Steuerklasse">Steuerklasse:</label>
-          <input
+
+          <select name="IB_Steuerklasse" id="dropdown">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+
+          <!-- <input
             type="number"
             name="IB_Steuerklasse"
             placeholder="Steuerklasse eingeben (bsp. 1)"
             value="{{steuerklasse_input}}"
             required
-          />
+          /> -->
+
           {% if kirche == 0 %}
           <input
             type="checkbox"
@@ -51,7 +62,7 @@
             id="CB_Kirche"
             value="1"
             checked
-            
+
           />
           {% endif%}
           <label for="CB_Kirche">Kirchensteuer?</label><br />

@@ -67,6 +67,22 @@ form {
     margin-top: 20px;
 }
 
+#dropdown{
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: none;
+    background: #F9F3E6;
+    box-sizing: border-box; 
+}
+
+#dropdown:focus, #dropdown:hover{
+    background-color: rgb(185, 185, 185);
+    outline: none;
+    transition: all 0.5s;
+}
+
 input[type=number]{
     width: 100%;
     padding: 12px;
