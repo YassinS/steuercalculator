@@ -31,9 +31,11 @@ def index():
         kirche = request.form.get('CB_Kirche') 
 
         if kirche == None:
-            kirche = 0
+            kirchesteu = 0
+        else:
+            kirchesteu = kirche
 
-        print(kirche)
+        print(kirchesteu)
         
         if int(steuerklasse) > 0 and int(steuerklasse) <7:
             check = check_csv(gehalt)
@@ -45,9 +47,10 @@ def index():
             kirchensteuer = round(float(gehalt) * 0.09,2)
             values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":kirche,"kirchensteuer":kirchensteuer}
         else:
+            kirchensteuer = 0
             values = {"gehalt":gehalt,"steuerklasse":steuerklasse,"kirche":"Nein"}
-        print(lohnsteuer)
-        return render_template("index.html",error=wrong_values,tax=int(gehalt)-int(lohnsteuer),values=values,gehalt_input=gehalt,steuerklasse_input=steuerklasse,kirche=kirche)
+        print(kirchensteuer)
+        return render_template("index.html",error=wrong_values,tax=int(gehalt)-int(lohnsteuer)-kirchensteuer,values=values,gehalt_input=gehalt,steuerklasse_input=steuerklasse,kirche=kirchesteu)
     if request.method=="GET":
         return render_template("index.html",error=wrong_values,tax=0,gehalt_input="",steuerklasse_input="")
 
