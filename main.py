@@ -30,16 +30,19 @@ def index():
         kirche = request.form.get('CB_Kirche') 
 
         #check tax class
-        if int(steuerklasse) > 0 and int(steuerklasse) <7:
+        if int(steuerklasse) < 0 and int(steuerklasse) >7:
+            wrong_values=1
+        elif int(gehalt)< 0:
+            wrong_values = 2
+        else:
             check = check_csv(gehalt)
             lohnsteuer=check[int(steuerklasse)]
-        else:
-            wrong_values=1
+        
         
         #check church tax
         if kirche:
             #calculate church tax 
-            kirchensteuer = round(float(gehalt) * 0.09,2)
+            kirchensteuer = round(float(lohnsteuer) * 0.09,2)
 
             #church checkbox true
             kirche_tf = 1

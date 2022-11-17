@@ -9,7 +9,6 @@
     />
   </head>
   <body>
-
     <section id="Rechner">
       <form action="#" method="post">
         <div class="container chead">
@@ -32,7 +31,9 @@
           <label for="IB_Steuerklasse">Steuerklasse:</label>
 
           <select name="IB_Steuerklasse" id="dropdown">
-            <option value="{{steuerklasse_input}}" hidden >{{steuerklasse_input}}</option>
+            <option value="{{steuerklasse_input}}" hidden>
+              {{steuerklasse_input}}
+            </option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -47,7 +48,6 @@
             name="CB_Kirche"
             id="CB_Kirche"
             value="1"
-            
           />
           {% else %}
           <input
@@ -56,10 +56,11 @@
             id="CB_Kirche"
             value="1"
             checked
-
           />
           {% endif%}
-          <label for="CB_Kirche" id="CB_Kirche_lable">Kirchensteuer?</label><br />
+          <label for="CB_Kirche" id="CB_Kirche_lable"
+            >Kirchensteuer?</label
+          ><br />
 
           <button type="submit" name="BTN_Ermitteln">
             <span>Ermitteln</span>
@@ -70,20 +71,26 @@
 
     <br />
 
-    {% if error == 0 %}
-      {% if tax != 0 %}
+    {% if error == 0 %} {% if tax != 0 %}
     <section id="Result">
       <div class="container cresult">
         <h2>Ihr Netto Gehalt beträgt: {{tax}}€</h2>
         <p class="Netto"></p>
       </div>
     </section>
-      {% endif %}
-    
-    {% elif error == 1 %}
+    {% endif %} {% elif error == 1 %}
     <section id="Result">
       <div class="container cresult">
-        <h2 id="error">Geben Sie eine Korrekte Lohnsteuerklasse ein</h2>
+        <h2 id="error">
+          Geben Sie eine Korrekte Lohnsteuerklasse ein
+        </h2>
+        <p class="Netto"></p>
+      </div>
+    </section>
+    {% elif error == 2 %}
+    <section id="Result">
+      <div class="container cresult">
+        <h2 id="error">Geben Sie eine Korrektes Gehalt ein</h2>
         <p class="Netto"></p>
       </div>
     </section>
