@@ -7,15 +7,16 @@ app = Flask(__name__,template_folder="templates")
 
 def check_csv(gehalt):
     with open("Lohnsteuertabelle.csv") as csvfile:
+        gehalt = int(gehalt)
         rows = csv.reader(csvfile,delimiter=";")
         for row in rows:
-            if int(gehalt)>70000:
+            if gehalt>70000:
                 rows = list(rows)
                 return rows[-1]
             if gehalt in row:
                 return row
             else:
-                if int(row[0])>=int(gehalt):
+                if int(row[0])>=gehalt:
                     return row
 
 @app.route('/',methods=('GET','POST'))
