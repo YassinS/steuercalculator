@@ -73,12 +73,15 @@ def index():
     if request.method=="GET":
         #return index.html with default values 
         return render_template("index.html",error=wrong_values,tax=0,gehalt_input="",steuerklasse_input=1,kirche=0) 
-    
+
+
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+# API        
+
 #@app.route("/get_income_tax/<int:gehalt>/<int:lohnsteuer>/")
 #def get_income_tax_post():
 #    result = check_csv(gehalt)[lohnsteuer]
 #     return jsonify(result)
-
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=1800,debug=True)
