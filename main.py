@@ -35,7 +35,7 @@ def index():
             wrong_values=1
         elif float(gehalt)< 0:
             wrong_values = 2
-        elif float(gehalt) < 9984:
+        elif float(gehalt) <= 9984:
             lohnsteuer = 0
         else:
             check = check_csv(gehalt)
