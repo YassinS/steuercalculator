@@ -1,12 +1,12 @@
 from flask import Flask
-from flask import render_template, request, jsonify
+from flask import render_template, request,jsonify
 import csv
 
 app = Flask(__name__,template_folder="templates")
 
 def check_csv(gehalt):
     with open("Lohnsteuertabelle.csv") as csvfile:
-        gehalt = int(gehalt)
+        gehalt = float(gehalt)
         rows = csv.reader(csvfile,delimiter=";")
         for row in rows:
             if gehalt>70000:
@@ -15,7 +15,7 @@ def check_csv(gehalt):
             if gehalt in row:
                 return row
             else:
-                if int(row[0])>=gehalt:
+                if float(row[0])>=gehalt:
                     return row
 
 @app.route('/',methods=('GET','POST'))
@@ -35,6 +35,8 @@ def index():
             wrong_values=1
         elif int(gehalt)< 0:
             wrong_values = 2
+        elif int(gehalt) < 9984:
+            lohnsteuer = 0
         else:
             check = check_csv(gehalt)
             lohnsteuer=check[int(steuerklasse)]
@@ -72,6 +74,10 @@ def index():
         #return index.html with default values 
         return render_template("index.html",error=wrong_values,tax=0,gehalt_input="",steuerklasse_input=1,kirche=0) 
     
+#@app.route("/get_income_tax/<int:gehalt>/<int:lohnsteuer>/")
+#def get_income_tax_post():
+#    result = check_csv(gehalt)[lohnsteuer]
+#     return jsonify(result)
 
 
 if __name__ == "__main__":
