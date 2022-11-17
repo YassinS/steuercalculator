@@ -33,9 +33,9 @@ def index():
         #check tax class
         if int(steuerklasse) < 0 and int(steuerklasse) >7:
             wrong_values=1
-        elif int(gehalt)< 0:
+        elif float(gehalt)< 0:
             wrong_values = 2
-        elif int(gehalt) < 9984:
+        elif float(gehalt) < 9984:
             lohnsteuer = 0
         else:
             check = check_csv(gehalt)
@@ -58,7 +58,7 @@ def index():
             kirche_tf = 0
 
         #calculate salary
-        tax = float(int(gehalt)-int(lohnsteuer)-kirchensteuer)
+        tax = float(float(gehalt)-int(lohnsteuer)-kirchensteuer)
 
         #replace . with ,
         tax = str(tax).replace(".",",")
